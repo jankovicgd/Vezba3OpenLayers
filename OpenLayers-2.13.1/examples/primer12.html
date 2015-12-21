@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <title>OpenLayers Example</title>
+        <link rel="stylesheet" href="../theme/default/style.css" type="text/css">
+        <link rel="stylesheet" href="style.css" type="text/css">
+    </head>
+    <body>
+        <h1 id="title">OpenLayers Example</h1>
+        <div id="tags">simple, basic, light</div>
+        <p id="shortdesc">
+            Demonstrate a simple map with an overlay that includes layer switching controls.
+        </p>
+        <div id="map" class="smallmap"></div>
+		<div id="options">
+        <div id="output">
+        </div>
+        <ul id="controlToggle">
+            <li>
+                <input type="radio" name="type" value="none" id="noneToggle"
+                       onclick="toggleControl(this);" checked="checked" />
+                <label for="noneToggle">navigate</label>
+            </li>
+            <li>
+                <input type="radio" name="type" value="line" id="lineToggle" onclick="toggleControl(this);" />
+                <label for="lineToggle">measure distance</label>
+            </li>
+            <li>
+                <input type="radio" name="type" value="polygon" id="polygonToggle" onclick="toggleControl(this);" />
+                <label for="polygonToggle">measure area</label>
+            </li>
+            <li>
+                <input type="checkbox" name="geodesic" id="geodesicToggle" onclick="toggleGeodesic(this);" />
+                <label for="geodesicToggle">use geodesic measures</label>
+            </li>
+            <li>
+                <input type="checkbox" name="immediate" id="immediateToggle" onclick="toggleImmediate(this);" />
+                <label for="immediateToggle">use immediate measures</label>
+            </li>
+        </ul>
+        <p>Note that the geometries drawn are planar geometries and the
+        metrics returned by the measure control are planar measures by
+        default.  If your map is in a geographic projection or you have the
+        appropriate projection definitions to transform your geometries into
+        geographic coordinates, you can set the "geodesic" property of the control
+        to true to calculate geodesic measures instead of planar measures.
+        Also you have the possibility to set the "immediate" property to true
+        to get a new calculated value once the mouse has been mooved.</p>
+    </div>
+        <div id="docs">
+            <p>This is a basic example demonstrating the use of a map with two layers and a few controls.</p>
+            <p>View the <a href="primer12.js" target="_blank">primer12.js</a> source to see how this is done.</p>
+        </div>
+        <script src="../lib/OpenLayers.js"></script>
+        <script src="primer12.js"></script>
+    </body>
+</html>
