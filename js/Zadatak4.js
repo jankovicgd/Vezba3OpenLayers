@@ -12,81 +12,36 @@ var ol_wms = new OpenLayers.Layer.WMS(
     {layers: "basic"}
 );
 
-var opstine_wms = new OpenLayers.Layer.WMS(
-    "Opštine",
-    "http://localhost:8080/geoserver/ows",
-    {
-        layers: "vzb:opstine",
-        transparent: "true",
-        format: "image/png"
-    },
-    {isBaseLayer: false, visibility: false}
-);
 
-var reke_wms = new OpenLayers.Layer.WMS(
-    "Reke",
-    "http://localhost:8080/geoserver/ows",
-    {
-        layers: "vzb:reke",
-        transparent: "true",
-        format: "image/png"
-    },
-    {isBaseLayer: false, visibility: true}
-);
-
-var zajedno = new OpenLayers.Layer.WMS(
-    "Reke i opštine",
-    "http://localhost:8080/geoserver/ows",
-    {
-        layers: "vzb:opstine,vzb:reke",
-        transparent: "true",
-        format: "image/png"
-    },
-    {isBaseLayer: false, visibility: false}
-);
-
-layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
+layer = new OpenLayers.Layer.OSM("Simple OSM Map");
 map.addLayer(layer);
 
-map.addLayers([ol_wms, opstine_wms, reke_wms, zajedno]);
+map.addLayers([ol_wms]);
 map.addLayer(vlayer);
 map.addControl(new OpenLayers.Control.LayerSwitcher());
 
 map.setCenter(
-                new OpenLayers.LonLat(19.8369400,45.2516700).transform(
+					new OpenLayers.LonLat(19.8369400,45.2516700).transform(
                     new OpenLayers.Projection("EPSG:4326"),
                     map.getProjectionObject()
                 ), 12
             ); 
 
-var overview = new OpenLayers.Control.OverviewMap({
-    maximized: false,
-    maximizeTitle: 'Prikaz celokupne karte',
-    minimizeTitle: 'Sakrij prikaz'
-});
-map.addControl(overview);
+map.addLayers([ol_wms]);
+map.addControl(new OpenLayers.Control.LayerSwitcher());	
 
 var markers = new OpenLayers.Layer.Markers( "Markers" );
 map.addLayer(markers);
 
 var size = new OpenLayers.Size(21,25);
 var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
-var icon = new OpenLayers.Icon('https://cdn2.iconfinder.com/data/icons/filled-icons/493/Geotag-512.png',size,offset);
-markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(21,44),icon));
+var icon = new OpenLayers.Icon('https://cdn2.iconfinder.com/data/icons/filled-icons/493/Geotag-512.png', size, offset);
 
-var size = new OpenLayers.Size(21,25);
-var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
-var icon = new OpenLayers.Icon('https://cdn2.iconfinder.com/data/icons/filled-icons/493/Geotag-512.png',size,offset);
+markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(21,44), icon));
 markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(19,45),icon));
-
-var size = new OpenLayers.Size(21,25);
-var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
-var icon = new OpenLayers.Icon('https://cdn2.iconfinder.com/data/icons/filled-icons/493/Geotag-512.png',size,offset);
 markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(20,44.5),icon));
 
-map.addLayers([ol_wms, opstine_wms, drumskisaob_wms]);
-map.addControl(new OpenLayers.Control.LayerSwitcher());
-map.setCenter(new OpenLayers.LonLat(21,44),6);
+// .transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject())
 
 var sketchSymbolizers = {
 	"Point": {
@@ -112,10 +67,12 @@ var sketchSymbolizers = {
 		fillOpacity: 0.3
 	}
 };
+
 var style = new OpenLayers.Style();
 style.addRules([
 	new OpenLayers.Rule({symbolizer: sketchSymbolizers})
 ]);
+
 var styleMap = new OpenLayers.StyleMap({"default": style});
 
 // allow testing of specific renderers via "?renderer=Canvas", etc
@@ -157,10 +114,7 @@ for(var key in measureControls) {
 	map.addControl(control);
 }
 
-
-
 document.getElementById('noneToggle').checked = true;
-
 
 function handleMeasurements(event) {
 	var geometry = event.geometry;

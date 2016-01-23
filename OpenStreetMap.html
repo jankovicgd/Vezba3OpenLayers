@@ -33,9 +33,11 @@
 	<h1>OpenStreetMap</h1>
 
 	<div id="map" class="smallmap"></div>
+	<script src="OpenLayers-2.13.1/lib/OpenLayers.js"></script>
+	<script src="js/Zadatak4.js"></script>
 		<div id="options">
-        <div id="output">
-        </div>
+        <div id="output"> 
+		</div>
         <ul id="controlToggle">
             <li>
                 <input type="radio" name="type" value="none" id="noneToggle"
@@ -58,11 +60,6 @@
                 <input type="checkbox" name="immediate" id="immediateToggle" onclick="toggleImmediate(this);" />
                 <label for="immediateToggle">use immediate measures</label>
             </li>
-        </ul>
-    </div>
-	<script src="OpenLayers-2.13.1/lib/OpenLayers.js"></script>
-	<script src="js/Zadatak4.js"></script>
-	
-
-	
+		</ul>
+		</div>
 </body>

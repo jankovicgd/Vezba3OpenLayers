@@ -1,0 +1,57 @@
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <title>Zadatak 5</title>
+        <link rel="stylesheet" href="OpenLayers-2.13.1/theme/default/style.css" type="text/css">
+		<link rel="stylesheet" href="style.css" type="text/css">
+		<style type="text/css">
+            html, body {
+			height: 100%
+			width: 100%
+            }
+			
+			#map {
+				margin-top:100px;
+				height: 50%;
+				width: 50%
+			}
+
+            #text {
+                position: absolute;
+                bottom: 1em;
+                left: 1em;
+                width: 512px;
+                z-index: 20000;
+                background-color: white;
+                padding: 0 0.5em 0.5em 0.5em;
+            }
+        </style>
+</head>
+
+<body>
+	<h1>Zadatak 5</h1>
+	<table align = "left" border="1">
+			<tr>
+				<td>Sloj</td>	<td>Legenda</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="drzava" id="drzavaToggle" onclick="toggleDrzave(this);" />
+					<label for="drzavaToggle">Drzava</label><img src="img/Legenda1.png"/></td>	
+					<td></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="KO" id="KOToggle" onclick="toggleKO(this);" />
+					<label for="KOToggle">KO</label> </td> <td><img src="img/Legenda2.png"/></td>
+			</tr>
+			<tr>
+				<<td><input type="checkbox" name="soilpolut" id="soilpolutToggle" onclick="togglesoilpolut(this);" />
+					<label for="soilpolutToggle">Soil Polution</label></td> <td><img src="img/Legenda3.png"/></td>
+			</tr>
+	</table>
+
+	<div id="map" class="smallmap"></div>
+	<script src="OpenLayers-2.13.1/lib/OpenLayers.js"></script>
+	<script src="js/Zadatak5.js"></script>
+	
+</body>

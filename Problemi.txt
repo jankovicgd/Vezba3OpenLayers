@@ -1,1 +1,2 @@
 1. Markeri i panning google maps
+2. Markeri OSM

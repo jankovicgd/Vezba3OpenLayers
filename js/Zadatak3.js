@@ -26,8 +26,8 @@ var aerial = new OpenLayers.Layer.Bing({
 map.addLayers([road, hybrid, aerial, ol_wms]);
 map.addControl(new OpenLayers.Control.LayerSwitcher());
 map.setCenter(
-                new OpenLayers.LonLat(19.8369400,45.2516700).transform(
-                    new OpenLayers.Projection("EPSG:4326"),
-                    map.getProjectionObject()
-                ), 12
-            ); 
+              new OpenLayers.LonLat(19.8369400,45.2516700).transform(
+              new OpenLayers.Projection("EPSG:4326"),
+              map.getProjectionObject()
+              ), 12
+); 
