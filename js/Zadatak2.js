@@ -1,7 +1,10 @@
 var vlayer = new OpenLayers.Layer.Vector( "Editable" );
 var map = new OpenLayers.Map( 'map', {
 	controls: [
+		new OpenLayers.Control.LayerSwitcher(),
 		new OpenLayers.Control.PanZoom(),
+		new OpenLayers.Control.MousePosition(),
+		new OpenLayers.Control.OverviewMap(),
 		new OpenLayers.Control.EditingToolbar(vlayer)
 	]
 });
@@ -29,6 +32,8 @@ var gsat = new OpenLayers.Layer.Google(
 	{type: G_SATELLITE_MAP, numZoomLevels: 22}
 );
 
+
+
 var markers = new OpenLayers.Layer.Markers( "Markers" );
 map.addLayer(markers);
 
@@ -40,16 +45,22 @@ markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(19.84,45.25),icon)
 var size = new OpenLayers.Size(21,25);
 var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
 var icon = new OpenLayers.Icon('https://cdn2.iconfinder.com/data/icons/filled-icons/493/Geotag-512.png',size,offset);
-markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(19.23,44.99),icon));
+markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(19.83,45.26),icon));
 
 var size = new OpenLayers.Size(21,25);
 var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
 var icon = new OpenLayers.Icon('https://cdn2.iconfinder.com/data/icons/filled-icons/493/Geotag-512.png',size,offset);
-markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(19.5,45.01),icon));
+markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(19.9,45.23),icon));
 
 map.addLayers([ gphy, gmap, ghyb, gsat, ol_wms]);
+map.addLayer(vlayer);
 map.addControl(new OpenLayers.Control.LayerSwitcher());
-map.setCenter(new OpenLayers.LonLat(19.8471689,45.2525955),13);
+map.setCenter(
+                new OpenLayers.LonLat(19.8369400,45.2516700).transform(
+                    new OpenLayers.Projection("EPSG:4326"),
+                    map.getProjectionObject()
+                ), 12
+            ); 
 
 var sketchSymbolizers = {
 		"Point": {

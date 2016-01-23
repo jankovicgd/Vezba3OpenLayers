@@ -1,41 +1,63 @@
 var vlayer = new OpenLayers.Layer.Vector( "Editable" );
 var map = new OpenLayers.Map( 'map', {
 	controls: [
-		new OpenLayers.Control.PanZoom(),
 		new OpenLayers.Control.EditingToolbar(vlayer)
 	]
 });
 
+
 var ol_wms = new OpenLayers.Layer.WMS(
     "OpenLayers WMS",
-    "http://vmap0.tiles.osgeo.org/wms/vmap0", {
-        layers: "basic"
-    }
+    "http://vmap0.tiles.osgeo.org/wms/vmap0",
+    {layers: "basic"}
 );
 
 var opstine_wms = new OpenLayers.Layer.WMS(
     "Opštine",
-    "http://localhost:8080/geoserver/ows", {
-        layers: "zeljana:opstine",
+    "http://localhost:8080/geoserver/ows",
+    {
+        layers: "vzb:opstine",
         transparent: "true",
         format: "image/png"
-    }, {
-        isBaseLayer: false,
-        visibility: false
-    }
+    },
+    {isBaseLayer: false, visibility: false}
 );
 
-var drumskisaob_wms = new OpenLayers.Layer.WMS(
-    "Drumski saobracaj",
-    "http://localhost:8080/geoserver/ows", {
-        layers: "zeljana:drumski_saobracaj",
+var reke_wms = new OpenLayers.Layer.WMS(
+    "Reke",
+    "http://localhost:8080/geoserver/ows",
+    {
+        layers: "vzb:reke",
         transparent: "true",
         format: "image/png"
-    }, {
-        isBaseLayer: false,
-        visibility: false
-    }
+    },
+    {isBaseLayer: false, visibility: true}
 );
+
+var zajedno = new OpenLayers.Layer.WMS(
+    "Reke i opštine",
+    "http://localhost:8080/geoserver/ows",
+    {
+        layers: "vzb:opstine,vzb:reke",
+        transparent: "true",
+        format: "image/png"
+    },
+    {isBaseLayer: false, visibility: false}
+);
+
+layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
+map.addLayer(layer);
+
+map.addLayers([ol_wms, opstine_wms, reke_wms, zajedno]);
+map.addLayer(vlayer);
+map.addControl(new OpenLayers.Control.LayerSwitcher());
+
+map.setCenter(
+                new OpenLayers.LonLat(19.8369400,45.2516700).transform(
+                    new OpenLayers.Projection("EPSG:4326"),
+                    map.getProjectionObject()
+                ), 12
+            ); 
 
 var overview = new OpenLayers.Control.OverviewMap({
     maximized: false,
@@ -63,82 +85,81 @@ var icon = new OpenLayers.Icon('https://cdn2.iconfinder.com/data/icons/filled-ic
 markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(20,44.5),icon));
 
 map.addLayers([ol_wms, opstine_wms, drumskisaob_wms]);
-map.addLayer(vlayer);
 map.addControl(new OpenLayers.Control.LayerSwitcher());
 map.setCenter(new OpenLayers.LonLat(21,44),6);
 
 var sketchSymbolizers = {
-		"Point": {
-			pointRadius: 4,
-			graphicName: "square",
-			fillColor: "white",
-			fillOpacity: 1,
-			strokeWidth: 1,
-			strokeOpacity: 1,
-			strokeColor: "#333333"
-		},
-		"Line": {
-			strokeWidth: 3,
-			strokeOpacity: 1,
-			strokeColor: "#666666",
-			strokeDashstyle: "dash"
-		},
-		"Polygon": {
-			strokeWidth: 2,
-			strokeOpacity: 1,
-			strokeColor: "#666666",
-			fillColor: "white",
-			fillOpacity: 0.3
-		}
-	};
-	var style = new OpenLayers.Style();
-	style.addRules([
-		new OpenLayers.Rule({symbolizer: sketchSymbolizers})
-	]);
-	var styleMap = new OpenLayers.StyleMap({"default": style});
-	
-	// allow testing of specific renderers via "?renderer=Canvas", etc
-	var renderer = OpenLayers.Util.getParameters(window.location.href).renderer;
-	renderer = (renderer) ? [renderer] : OpenLayers.Layer.Vector.prototype.renderers;
-
-	var measureControls = {
-		line: new OpenLayers.Control.Measure(
-			OpenLayers.Handler.Path, {
-				persist: true,
-				handlerOptions: {
-					layerOptions: {
-						renderers: renderer,
-						styleMap: styleMap
-					}
-				}
-			}
-		),
-		polygon: new OpenLayers.Control.Measure(
-			OpenLayers.Handler.Polygon, {
-				persist: true,
-				handlerOptions: {
-					layerOptions: {
-						renderers: renderer,
-						styleMap: styleMap
-					}
-				}
-			}
-		)
-	};
-	
-	var control;
-	for(var key in measureControls) {
-		control = measureControls[key];
-		control.events.on({
-			"measure": handleMeasurements,
-			"measurepartial": handleMeasurements
-		});
-		map.addControl(control);
+	"Point": {
+		pointRadius: 4,
+		graphicName: "square",
+		fillColor: "white",
+		fillOpacity: 1,
+		strokeWidth: 1,
+		strokeOpacity: 1,
+		strokeColor: "#333333"
+	},
+	"Line": {
+		strokeWidth: 3,
+		strokeOpacity: 1,
+		strokeColor: "#666666",
+		strokeDashstyle: "dash"
+	},
+	"Polygon": {
+		strokeWidth: 2,
+		strokeOpacity: 1,
+		strokeColor: "#666666",
+		fillColor: "white",
+		fillOpacity: 0.3
 	}
-	
-	
-	
-	document.getElementById('noneToggle').checked = true;
+};
+var style = new OpenLayers.Style();
+style.addRules([
+	new OpenLayers.Rule({symbolizer: sketchSymbolizers})
+]);
+var styleMap = new OpenLayers.StyleMap({"default": style});
+
+// allow testing of specific renderers via "?renderer=Canvas", etc
+var renderer = OpenLayers.Util.getParameters(window.location.href).renderer;
+renderer = (renderer) ? [renderer] : OpenLayers.Layer.Vector.prototype.renderers;
+
+var measureControls = {
+	line: new OpenLayers.Control.Measure(
+		OpenLayers.Handler.Path, {
+			persist: true,
+			handlerOptions: {
+				layerOptions: {
+					renderers: renderer,
+					styleMap: styleMap
+				}
+			}
+		}
+	),
+	polygon: new OpenLayers.Control.Measure(
+		OpenLayers.Handler.Polygon, {
+			persist: true,
+			handlerOptions: {
+				layerOptions: {
+					renderers: renderer,
+					styleMap: styleMap
+				}
+			}
+		}
+	)
+};
+
+var control;
+for(var key in measureControls) {
+	control = measureControls[key];
+	control.events.on({
+		"measure": handleMeasurements,
+		"measurepartial": handleMeasurements
+	});
+	map.addControl(control);
+}
+
+
+
+document.getElementById('noneToggle').checked = true;
 
 
 function handleMeasurements(event) {

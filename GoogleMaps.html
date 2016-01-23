@@ -2,34 +2,42 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         <meta name="apple-mobile-web-app-capable" content="yes">
+        <title>Google</title>
         <link rel="stylesheet" href="OpenLayers-2.13.1/theme/default/style.css" type="text/css">
         <link rel="stylesheet" href="style.css" type="text/css">
 		<style type="text/css">
-			html, body, #map {
-			margin: 0;
-			width: 840;
-			height: 550;
+            html, body {
+			height: 100%
+			width: 100%
+            }
+			
+			#map {
+				height: 50%;
+				width: 50%
 			}
 
-			#text {
-			position: absolute;
-			bottom: 1em;
-			left: 1em;
-			width: 512px;
-			z-index: 20000;
-			background-color: white;
-			padding: 0 0.5em 0.5em 0.5em;
-			}
-        </style>	
+            #text {
+                position: absolute;
+                bottom: 1em;
+                left: 1em;
+                width: 512px;
+                z-index: 20000;
+                background-color: white;
+                padding: 0 0.5em 0.5em 0.5em;
+            }
+        </style>		
 </head>
 
 <body>
-	<h1>GoogleMaps - Zadatak 2</h1>
+	<h1>Google Maps</h1>
 
 	<div id="map" class="smallmap"></div>
 		<div id="options">
         <div id="output">
         </div>
+		<script src="OpenLayers-2.13.1/lib/OpenLayers.js"></script>
+		<script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjpkAC9ePGem0lIq5XcMiuhR_wWLPFku8Ix9i2SXYRVK3e45q1BQUd_beF8dtzKET_EteAjPdGDwqpQ'></script>
+		<script src="js/Zadatak2.js"></script>
         <ul id="controlToggle">
             <li>
                 <input type="radio" name="type" value="none" id="noneToggle"
@@ -54,8 +62,4 @@
             </li>
         </ul>
     </div>
-	<script src="OpenLayers-2.13.1/lib/OpenLayers.js"></script>
-	<script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjpkAC9ePGem0lIq5XcMiuhR_wWLPFku8Ix9i2SXYRVK3e45q1BQUd_beF8dtzKET_EteAjPdGDwqpQ'></script>
-	<script src="js/Zadatak2.js"></script>
-
 </body>

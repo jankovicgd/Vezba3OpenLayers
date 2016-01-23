@@ -1,4 +1,4 @@
- var apiKey = "AqTGBsziZHIJYYxgivLBf0hVdrAk9mWO5cQcb8Yux8sW5M8c8opEC2lZqKR1ZZXf";
+ var apiKey = "27oyRfyGsUGGzpcfOEcL~kOftlxu9yu2N9bmI6DEuaA~Apr4kkqL9DaomWxA0ucPOgrF6iLOUebQf7ga3jaBm4ftZ_B-RZfHf5qR_O5L9RfT";
 var map = new OpenLayers.Map("map");
 
 var ol_wms = new OpenLayers.Layer.WMS(

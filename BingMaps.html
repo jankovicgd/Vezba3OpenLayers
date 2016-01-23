@@ -1,14 +1,39 @@
 <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <title>Bing</title>
+        <link rel="stylesheet" href="OpenLayers-2.13.1/theme/default/style.css" type="text/css">
+        <link rel="stylesheet" href="style.css" type="text/css">
+		<style type="text/css">
+            html, body {
+			height: 100%
+			width: 100%
+            }
+			
+			#map {
+				height: 90%;
+				width: 90%
+			}
 
+            #text {
+                position: absolute;
+                bottom: 1em;
+                left: 1em;
+                width: 512px;
+                z-index: 20000;
+                background-color: white;
+                padding: 0 0.5em 0.5em 0.5em;
+            }
+        </style>		
 </head>
 
 <body>
 
-<h1>Vezba geoportali</h1>
+	<h1>Bing Maps</h1>
 
-<p><a href="OpenLayers.html">OpenLayers</a></p>
-<p><a href="GoogleMaps.html">GoogleMaps</a></p>
-<p><a href="BingMaps.html">BingMaps</a></p>
-<p><a href="OpenLayers.html">OpenStreetMap</a></p>
+	<div id="map" class="smallmap"></div>
+	<script src="OpenLayers-2.13.1/lib/OpenLayers.js"></script>
+	<script src="js/Zadatak3.js"></script>
 
 </body>
