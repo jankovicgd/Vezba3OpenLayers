@@ -35,8 +35,6 @@ var gsat = new OpenLayers.Layer.Google(
 	{type: G_SATELLITE_MAP, numZoomLevels: 22}
 );
 
-
-
 var markers = new OpenLayers.Layer.Markers( "Markers" );
 map.addLayer(markers);
 
@@ -44,9 +42,20 @@ var size = new OpenLayers.Size(21,25);
 var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
 var icon = new OpenLayers.Icon('https://cdn2.iconfinder.com/data/icons/filled-icons/493/Geotag-512.png',size,offset);
 
-markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(19.84,45.25),icon));
-markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(19.83,45.26),icon));
-markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(19.9,45.23),icon));
+var size = new OpenLayers.Size(21,25);
+var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+var icon = new OpenLayers.Icon('https://cdn2.iconfinder.com/data/icons/filled-icons/493/Geotag-512.png',size,offset);
+var marker1 = markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(19.84,45.25),icon));
+
+var size = new OpenLayers.Size(21,25);
+var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+var icon = new OpenLayers.Icon('https://cdn2.iconfinder.com/data/icons/filled-icons/493/Geotag-512.png',size,offset);
+var marker2 = markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(19.83,45.26),icon));
+
+var size = new OpenLayers.Size(21,25);
+var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+var icon = new OpenLayers.Icon('https://cdn2.iconfinder.com/data/icons/filled-icons/493/Geotag-512.png',size,offset);
+var marker3 = markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(19.9,45.23),icon));
 
 map.addLayers([gphy, gmap, ghyb, gsat, ol_wms]);
 map.addLayer(vlayer);

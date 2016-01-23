@@ -1,7 +1,57 @@
 <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <title>Zadatak 6</title>
+        <link rel="stylesheet" href="OpenLayers-2.13.1/theme/default/style.css" type="text/css">
+		<link rel="stylesheet" href="style.css" type="text/css">
+		<style type="text/css">
+            html, body {
+			height: 100%;
+			width: 100%;
+            }
+			
+			#map {
+				height: 50%;
+				width: 50%;
+				border:0px
+			}
 
+            #text {
+                position: absolute;
+                bottom: 1em;
+                left: 1em;
+                width: 512px;
+                z-index: 20000;
+                background-color: white;
+                padding: 0 0.5em 0.5em 0.5em;
+            }
+        </style>
 </head>
 
 <body>
+	<h1>Zadatak 6</h1>
+	<table align = "left" border="1">
+			<tr>
+				<td>Prodavnica</td>	<td>Legenda</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="p1" id="p1Toggle" onclick="togglep1(this);" />
+					<label for="p1Toggle">Prodavnica 1</label></td>	
+					<td><img src="img/Legenda4.png"/></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="p2" id="p2Toggle" onclick="togglep2(this);" />
+					<label for="p2Toggle">Prodavnica 2</label> </td> <td><img src="img/Legenda5.png"/></td>
+			</tr>
+			<tr>
+				<<td><input type="checkbox" name="p3" id="p3Toggle" onclick="togglep3(this);" />
+					<label for="p3Toggle">Prodavnica 3</label></td> <td><img src="img/Legenda6.png"/></td>
+			</tr>
+	</table>
 
+	<div id="map" class="smallmap"></div>
+	<script src="OpenLayers-2.13.1/lib/OpenLayers.js"></script>
+	<script src="js/Zadatak6.js"></script>
+	
 </body>

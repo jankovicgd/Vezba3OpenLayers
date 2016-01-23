@@ -53,7 +53,7 @@ var soilpol_wms = new OpenLayers.Layer.WMS(
 );
 
 map.addLayers([ol_wms, drzave_wms, ko_wms, soilpol_wms]);
-map.zoomToMaxExtent();
+map.setCenter(new OpenLayers.LonLat(21,44),6);
 
 // funkcije kojima se podesava vidljivost sloja
 function toggleDrzave(element) {

@@ -35,11 +35,19 @@ map.addLayer(markers);
 
 var size = new OpenLayers.Size(21,25);
 var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
-var icon = new OpenLayers.Icon('https://cdn2.iconfinder.com/data/icons/filled-icons/493/Geotag-512.png', size, offset);
+var icon = new OpenLayers.Icon('https://cdn2.iconfinder.com/data/icons/filled-icons/493/Geotag-512.png',size,offset);
+var marker1 = markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(19.84,45.25).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()),icon));
 
-markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(21,44), icon));
-markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(19,45),icon));
-markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(20,44.5),icon));
+var size = new OpenLayers.Size(21,25);
+var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+var icon = new OpenLayers.Icon('https://cdn2.iconfinder.com/data/icons/filled-icons/493/Geotag-512.png',size,offset);
+var marker2 = markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(19.83,45.26).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()),icon));
+
+var size = new OpenLayers.Size(21,25);
+var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+var icon = new OpenLayers.Icon('https://cdn2.iconfinder.com/data/icons/filled-icons/493/Geotag-512.png',size,offset);
+var marker3 = markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(19.9,45.23).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject()),icon));
+
 
 // .transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject())
 
