@@ -1,14 +1,61 @@
 <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="OpenLayers-2.13.1/theme/default/style.css" type="text/css">
+        <link rel="stylesheet" href="style.css" type="text/css">
+		<style type="text/css">
+			html, body, #map {
+			margin: 0;
+			width: 840;
+			height: 550;
+			}
 
+			#text {
+			position: absolute;
+			bottom: 1em;
+			left: 1em;
+			width: 512px;
+			z-index: 20000;
+			background-color: white;
+			padding: 0 0.5em 0.5em 0.5em;
+			}
+        </style>	
 </head>
 
 <body>
+	<h1>GoogleMaps - Zadatak 2</h1>
 
-<h1>Vezba geoportali</h1>
-
-<p><a href="OpenLayers.html">OpenLayers</a></p>
-<p><a href="GoogleMaps.html">GoogleMaps</a></p>
-<p><a href="BingMaps.html">BingMaps</a></p>
-<p><a href="OpenLayers.html">OpenStreetMap</a></p>
+	<div id="map" class="smallmap"></div>
+		<div id="options">
+        <div id="output">
+        </div>
+        <ul id="controlToggle">
+            <li>
+                <input type="radio" name="type" value="none" id="noneToggle"
+                       onclick="toggleControl(this);" checked="checked" />
+                <label for="noneToggle">navigate</label>
+            </li>
+            <li>
+                <input type="radio" name="type" value="line" id="lineToggle" onclick="toggleControl(this);" />
+                <label for="lineToggle">measure distance</label>
+            </li>
+            <li>
+                <input type="radio" name="type" value="polygon" id="polygonToggle" onclick="toggleControl(this);" />
+                <label for="polygonToggle">measure area</label>
+            </li>
+            <li>
+                <input type="checkbox" name="geodesic" id="geodesicToggle" onclick="toggleGeodesic(this);" />
+                <label for="geodesicToggle">use geodesic measures</label>
+            </li>
+            <li>
+                <input type="checkbox" name="immediate" id="immediateToggle" onclick="toggleImmediate(this);" />
+                <label for="immediateToggle">use immediate measures</label>
+            </li>
+        </ul>
+    </div>
+	<script src="OpenLayers-2.13.1/lib/OpenLayers.js"></script>
+	<script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjpkAC9ePGem0lIq5XcMiuhR_wWLPFku8Ix9i2SXYRVK3e45q1BQUd_beF8dtzKET_EteAjPdGDwqpQ'></script>
+	<script src="js/Zadatak2.js"></script>
 
 </body>
